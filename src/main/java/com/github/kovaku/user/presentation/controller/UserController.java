@@ -1,5 +1,7 @@
 package com.github.kovaku.user.presentation.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -28,31 +30,46 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/v1/user/{userId}")
     public User getUserById(@PathVariable(name = "userId") Integer id) throws UserNotFoundException {
-        return userService.getUserById(id);
+        return enrichUserWithSelfLinks(userService.getUserById(id));
     }
 
-    @GetMapping("/users")
+    @GetMapping("/v1/users")
     public List<User> getAllUsers() {
-        return userService.geAllUsers();
+        return enrichUserWithSelfLinks(userService.geAllUsers());
     }
 
-    @PostMapping("/user")
+    @PostMapping("/v1/user")
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@Validated @RequestBody UserRequest user) {
-        return userService.createUser(user);
+        return enrichUserWithSelfLinks(userService.createUser(user));
     }
 
-    @PutMapping("/user/{userId}")
+    @PutMapping("/v1/user/{userId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public User updateUser(@PathVariable(name = "userId") Integer id, @Validated @RequestBody UserRequest user) throws UserNotFoundException {
-        return userService.updateUser(id, user);
+        return enrichUserWithSelfLinks(userService.updateUser(id, user));
     }
 
-    @DeleteMapping("/user/{userId}")
+    @DeleteMapping("/v1/user/{userId}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable(name = "userId") Integer id) throws UserNotFoundException {
         userService.deleteUser(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
+    private User enrichUserWithSelfLinks(User user) {
+        return user.add(linkTo(UserController.class).slash(user.getId()).withSelfRel());
+    }
+
+    private List<User> enrichUserWithSelfLinks(List<User> users) {
+        users.forEach(this::enrichUserWithSelfLinks);
+        return users;
+    }
+
+    //TODO: New Api
+    //TODO: Readme
+    //TODO: IT
+    //TODO: APIdoc
+
 }

@@ -9,7 +9,7 @@ import com.github.kovaku.user.service.exception.UserNotFoundException;
 public interface UserService {
     User getUserById(Integer id) throws UserNotFoundException;
     List<User> geAllUsers();
-    User createUser(UserRequest user);
-    User updateUser(Integer id, UserRequest user) throws UserNotFoundException;;
+    User createUser(UserRequest userRequest);
+    User updateUser(Integer id, UserRequest userRequest) throws UserNotFoundException;;
     void deleteUser(Integer id) throws UserNotFoundException;
 }
