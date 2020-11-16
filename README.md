@@ -5,3 +5,7 @@
 ./mvnw clean install
 ./mvnw spring-boot:run
 ```
+### Api Documentation
+```
+http://localhost:8080/api/swagger-ui/
+```

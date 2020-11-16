@@ -1,6 +1,7 @@
 package com.github.kovaku.user.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,12 @@ public class RepositoryBasedUserService implements UserService {
     public User getUserById(Integer id) throws UserNotFoundException {
         return userRepository
             .findById(id)
+            .orElseThrow(UserNotFoundException::new);
+    }
+
+    @Override
+    public User getUserByName(String name) throws UserNotFoundException {
+        return Optional.ofNullable(userRepository.findUserByName(name))
             .orElseThrow(UserNotFoundException::new);
     }
 

@@ -1,0 +1,12 @@
+# Changelog
+All notable changes to this API is documented here.
+
+## [1.0.0] - 2020-11-15
+### Added
+- Basic CRUD functionality added
+
+## [1.0.0] - 2020-11-16
+### Added
+- Search user by name functionality added
+### Changed
+- User not found is mapped to HTTP 404 status
