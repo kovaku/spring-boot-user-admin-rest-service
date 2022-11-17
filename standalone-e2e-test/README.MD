@@ -1,0 +1,1 @@
+mvn clean install -f standalone-e2e-test/pom.xml
