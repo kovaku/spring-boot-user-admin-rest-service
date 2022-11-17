@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john_doe@acme.com",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/api/1"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Jane Doe",
+    "email": "jane_doe@acme.com",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/api/2"
+      }
+    ]
+  }
+]

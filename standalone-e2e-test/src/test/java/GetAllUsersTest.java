@@ -1,14 +1,25 @@
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+import org.json.JSONException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.Matchers.equalTo;
 
 public class GetAllUsersTest extends AbstractRestAssuredBase {
+    @BeforeAll
+    public static void setup() {
+        RestAssured.basePath="api/v1/users";
+    }
+
 
     @Test
     void testDefaultGetAllUsers() {
@@ -46,5 +57,21 @@ public class GetAllUsersTest extends AbstractRestAssuredBase {
         System.out.println("Name of the users in the response: " + allNames);
         List<Map> oneUser = js.get("findAll { x -> x.name == 'John Doe'}");  //return the userwith name 'John Doe'
         System.out.println("John Doe's record: " + oneUser);
+    }
+
+    @Test
+    void testDefaultGetAllUsersWithJsonAssert() throws JSONException, IOException {
+        String expectedResponse = getJsonStringFromFile("alldefaultusers.json");
+
+        String actualResponse = RestAssured.given()
+                .log().all()
+                .get()
+                .prettyPeek()
+                .then()
+                .statusCode(200)
+                .extract()
+                .asString();
+
+        JSONAssert.assertEquals(expectedResponse, actualResponse, false);
     }
 }

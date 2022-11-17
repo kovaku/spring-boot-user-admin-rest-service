@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 public class SwaggerEndpointTest extends AbstractRestAssuredBase {
     @BeforeAll
     static void setup() {
-        System.out.println("@BeforeAll - executes once before all test methods in this class");
+        RestAssured.basePath="/api/swagger-ui/";
     }
 
     @Test
