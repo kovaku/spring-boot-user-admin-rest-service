@@ -2,6 +2,7 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -36,5 +37,27 @@ public class GetUserByIdTest extends AbstractRestAssuredBase {
                 Arguments.of(1, "John Doe"),
                 Arguments.of(2, "Jane Doe")
         );
+    }
+
+    @Test
+    void testNonExistingUser(){
+        RestAssured.given()
+                .pathParam("userId", 999)
+                .log().all()
+                .get()
+                .prettyPeek()
+                .then()
+                .statusCode(404);
+    }
+
+    @Test
+    void testBadRequest(){
+        RestAssured.given()
+                .pathParam("userId", "abc")
+                .log().all()
+                .get()
+                .prettyPeek()
+                .then()
+                .statusCode(400);
     }
 }
