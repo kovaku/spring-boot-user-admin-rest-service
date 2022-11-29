@@ -1,6 +1,5 @@
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import org.json.JSONException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,7 +22,7 @@ public class PostNewUserTest extends AbstractRestAssuredBase {
     }
 
     @Test
-    void testAddNewUserPositiveFlow() throws JSONException {
+    void testAddNewUserPositiveFlow() {
         int idOfNewUser = RestAssured.given()
                 .body(Map.of("name", NEW_USER_NAME, "email", NEW_USER_EMAIL))
                 .contentType(ContentType.JSON)
@@ -38,7 +37,7 @@ public class PostNewUserTest extends AbstractRestAssuredBase {
                 .path("id");
 
         // cleanup newly created user
-        System.out.println("id of the new record to be cleaned up: " + idOfNewUser);
+        log.info("id of the new record to be cleaned up: " + idOfNewUser);
 
         RestAssured.given()
                 .basePath("api/v1/user/{userId}")
@@ -52,7 +51,7 @@ public class PostNewUserTest extends AbstractRestAssuredBase {
 
     @ParameterizedTest
     @MethodSource("badRequestBodies")
-    void testAddNewUserBadRequest(String requestBody) throws JSONException {
+    void testAddNewUserBadRequest(String requestBody) {
         RestAssured.given()
                 .body(requestBody)
                 .contentType(ContentType.JSON)

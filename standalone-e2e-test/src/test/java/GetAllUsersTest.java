@@ -52,9 +52,9 @@ public class GetAllUsersTest extends AbstractRestAssuredBase {
         // https://www.javadoc.io/doc/io.rest-assured/json-path/latest/io/restassured/path/json/JsonPath.html
         //additional code snippets
         List<Map> allNames = js.get("name");   //get all names from the response
-        System.out.println("Name of the users in the response: " + allNames);
+        log.info("Name of the users in the response: " + allNames);
         List<Map> oneUser = js.get("findAll { x -> x.name == 'John Doe'}");  //return the userwith name 'John Doe'
-        System.out.println("John Doe's record: " + oneUser);
+        log.info("John Doe's record: " + oneUser);
     }
 
     @Test

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class AbstractRestAssuredBase {
-    private static final Logger log = LoggerFactory.getLogger(AbstractRestAssuredBase.class);
+    static final Logger log = LoggerFactory.getLogger(AbstractRestAssuredBase.class);
 
     @BeforeAll
     public static void init() {
