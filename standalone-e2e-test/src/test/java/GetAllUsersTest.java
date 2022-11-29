@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class GetAllUsersTest extends AbstractRestAssuredBase {
     @BeforeAll
     public static void setup() {
-        RestAssured.basePath="api/v1/users";
+        RestAssured.basePath = "api/v1/users";
     }
 
 
@@ -46,8 +46,8 @@ public class GetAllUsersTest extends AbstractRestAssuredBase {
                 .asString();
 
         JsonPath js = new JsonPath(responseString);
-        Assertions.assertEquals(2, js.getInt("size()"), "Number of users returned is incorrect!" );
-        Assertions.assertEquals("John Doe", js.getString("[0].name"), "First user name is incorrect!" );
+        Assertions.assertEquals(2, js.getInt("size()"), "Number of users returned is incorrect!");
+        Assertions.assertEquals("John Doe", js.getString("[0].name"), "First user name is incorrect!");
 
         // https://www.javadoc.io/doc/io.rest-assured/json-path/latest/io/restassured/path/json/JsonPath.html
         //additional code snippets
@@ -59,7 +59,7 @@ public class GetAllUsersTest extends AbstractRestAssuredBase {
 
     @Test
     void testDefaultGetAllUsersWithJsonAssert() throws JSONException, IOException {
-        String expectedResponse = getJsonStringFromFile("alldefaultusers.json");
+        String expectedResponse = getJsonStringFromFile("allDefaultUsers.json");
 
         String actualResponse = RestAssured.given()
                 .log().all()

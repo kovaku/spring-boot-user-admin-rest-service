@@ -40,7 +40,7 @@ public class GetUserByIdTest extends AbstractRestAssuredBase {
     }
 
     @Test
-    void testNonExistingUser(){
+    void testNonExistingUser() {
         RestAssured.given()
                 .pathParam("userId", 999)
                 .log().all()
@@ -51,7 +51,7 @@ public class GetUserByIdTest extends AbstractRestAssuredBase {
     }
 
     @Test
-    void testBadRequest(){
+    void testBadRequest() {
         RestAssured.given()
                 .pathParam("userId", "abc")
                 .log().all()

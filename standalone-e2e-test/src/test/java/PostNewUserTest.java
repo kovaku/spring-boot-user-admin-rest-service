@@ -1,7 +1,6 @@
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -74,6 +73,3 @@ public class PostNewUserTest extends AbstractRestAssuredBase {
         );
     }
 }
-
-
-// {"name": "new user","email": "test@test.com"}

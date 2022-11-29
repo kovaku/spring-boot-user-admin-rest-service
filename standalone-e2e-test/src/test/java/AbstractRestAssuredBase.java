@@ -1,8 +1,8 @@
 import io.restassured.RestAssured;
+import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.BeforeAll;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 public class AbstractRestAssuredBase {
@@ -28,10 +28,7 @@ public class AbstractRestAssuredBase {
     }
 
     public static String getJsonStringFromFile(String filename) throws IOException {
-        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream is = classloader.getResourceAsStream(filename);
-        String content = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-        return content;
+        return IOUtils.resourceToString("/"+filename, StandardCharsets.UTF_8);
     }
 }
 
