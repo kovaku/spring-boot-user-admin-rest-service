@@ -18,7 +18,6 @@ public class GetAllUsersTest extends AbstractRestAssuredBase {
         RestAssured.basePath = "api/v1/users";
     }
 
-
     @Test
     void testDefaultGetAllUsers() {
         RestAssured.given()
