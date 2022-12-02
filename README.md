@@ -22,14 +22,14 @@ Run E2E tests only
 ```
 mvn clean test -pl standalone-e2e-test -DskipTests=false
 ```
-By default it runs against localhost:8080, but you can override it with -Dspring.profiles.active=<env> setting  
+By default it runs against localhost:8080, but you can override it with -P<env> setting (maven profile) 
 ```
-mvn clean test -pl standalone-e2e-test -DskipTests=false -Dspring.profiles.active=prod
+mvn clean test -pl standalone-e2e-test -Pprod
 ```
 options:
-dev -> http://localhost:8080/  (default)
+-Pdev -> http://localhost:8080/  (default)
 
-prod -> http://prod:8080/
+-Pprod -> http://prod:8080/
 
 Run a single test class: -Dtest=SwaggerEndpointTest
 
