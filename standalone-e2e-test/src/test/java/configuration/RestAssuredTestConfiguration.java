@@ -1,25 +1,12 @@
 package configuration;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
 @ComponentScan("config")
-@PropertySource("classpath:/config.properties")
+//${spring.profiles.active:dev} -> use spring.profiles.active or the default "dev"
+@PropertySource("classpath:/application-${spring.profiles.active:dev}.properties")
 public class RestAssuredTestConfiguration {
-    @Value("${service.baseURI}")
-    static String baseURI;
-
-    public static String getBaseURI() {
-        return baseURI;
-    }
-
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
 }

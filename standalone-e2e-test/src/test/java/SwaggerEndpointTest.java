@@ -10,7 +10,7 @@ public class SwaggerEndpointTest extends AbstractRestAssuredBase {
 
     @Test
     void testSwaggerUIAvailable() {
-        RestAssured.given()
+        RestAssured.given(getRequestSpecification())
                 .log().all()
                 .get()
                 .then()

@@ -22,17 +22,16 @@ Run E2E tests only
 ```
 mvn clean test -pl standalone-e2e-test -DskipTests=false
 ```
-By default it runs against localhost:8080
-
-Optionally specify 'targetenv' environment variable
+By default it runs against localhost:8080, but you can override it with -Dspring.profiles.active=<env> setting  
 ```
-mvn clean test -pl standalone-e2e-test -DskipTests=false -Dtargetenv=local
+mvn clean test -pl standalone-e2e-test -DskipTests=false -Dspring.profiles.active=prod
 ```
 options:
-local -> http://localhost:8080/  (default)
+dev -> http://localhost:8080/  (default)
 
 prod -> http://prod:8080/
 
+Run a single test class: -Dtest=SwaggerEndpointTest
 
 ### Todo: 
 bump spring-boot-starter-parent to latest - that means need to bump to swagger 3 (openapi) 

@@ -23,7 +23,7 @@ public class PostNewUserTest extends AbstractRestAssuredBase {
 
     @Test
     void testAddNewUserPositiveFlow() {
-        int idOfNewUser = RestAssured.given()
+        int idOfNewUser = RestAssured.given(getRequestSpecification())
                 .body(Map.of("name", NEW_USER_NAME, "email", NEW_USER_EMAIL))
                 .contentType(ContentType.JSON)
                 .log().all()
@@ -52,7 +52,7 @@ public class PostNewUserTest extends AbstractRestAssuredBase {
     @ParameterizedTest
     @MethodSource("badRequestBodies")
     void testAddNewUserBadRequest(String requestBody) {
-        RestAssured.given()
+        RestAssured.given(getRequestSpecification())
                 .body(requestBody)
                 .contentType(ContentType.JSON)
                 .log().all()

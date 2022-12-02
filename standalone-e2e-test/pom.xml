@@ -15,7 +15,7 @@
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <skipTests>true</skipTests>
-  </properties>
+   </properties>
 
   <name>standalone-e2e-test</name>
   <url>http://maven.apache.org</url>
@@ -114,6 +114,11 @@
       <artifactId>spring-context</artifactId>
       <version>5.3.23</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-expression</artifactId>
+      <version>5.3.23</version>
     </dependency>
   </dependencies>
 

@@ -18,7 +18,7 @@ public class GetUserByIdTest extends AbstractRestAssuredBase {
     @ParameterizedTest
     @MethodSource("defaultUserNames")
     void testDefaultUserNames(int userId, String expectedName) {
-        String responseString = RestAssured.given()
+        String responseString = RestAssured.given(getRequestSpecification())
                 .pathParam("userId", userId)
                 .log().all()
                 .get()
@@ -41,7 +41,7 @@ public class GetUserByIdTest extends AbstractRestAssuredBase {
 
     @Test
     void testNonExistingUser() {
-        RestAssured.given()
+        RestAssured.given(getRequestSpecification())
                 .pathParam("userId", 999)
                 .log().all()
                 .get()
@@ -52,7 +52,7 @@ public class GetUserByIdTest extends AbstractRestAssuredBase {
 
     @Test
     void testBadRequest() {
-        RestAssured.given()
+        RestAssured.given(getRequestSpecification())
                 .pathParam("userId", "abc")
                 .log().all()
                 .get()

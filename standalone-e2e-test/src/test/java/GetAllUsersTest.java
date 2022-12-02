@@ -20,7 +20,7 @@ public class GetAllUsersTest extends AbstractRestAssuredBase {
 
     @Test
     void testDefaultGetAllUsers() {
-        RestAssured.given()
+        RestAssured.given(getRequestSpecification())
                 .log().all()
                 .get()
                 .prettyPeek()
@@ -35,7 +35,7 @@ public class GetAllUsersTest extends AbstractRestAssuredBase {
 
     @Test
     void testDefaultGetAllUsersViaExtract() {
-        String responseString = RestAssured.given()
+        String responseString = RestAssured.given(getRequestSpecification())
                 .log().all()
                 .get()
                 .prettyPeek()
@@ -60,7 +60,7 @@ public class GetAllUsersTest extends AbstractRestAssuredBase {
     void testDefaultGetAllUsersWithJsonAssert() throws JSONException, IOException {
         String expectedResponse = getJsonStringFromFile("allDefaultUsers.json");
 
-        String actualResponse = RestAssured.given()
+        String actualResponse = RestAssured.given(getRequestSpecification())
                 .log().all()
                 .get()
                 .prettyPeek()
