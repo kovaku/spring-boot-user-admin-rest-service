@@ -21,6 +21,7 @@ public class AbstractRestAssuredBase {
     private String baseUri;
 
     public RequestSpecification getRequestSpecification(){
+        log.info("Url to be used: " + baseUri);
         return RestAssured.given().baseUri(baseUri);
     }
 
